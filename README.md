@@ -10,6 +10,6 @@
  space and she will spit out a password list based on those words.
 
              Author: Darryl Lane  |  Twitter: @darryllane101
-
+                   https://github.com/darryllane/Jenny
  Example Usage:
               Feed Me Seymour!: First second third
