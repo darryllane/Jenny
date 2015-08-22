@@ -24,7 +24,7 @@ print """
               Feed Me Seymour!: First second third
 """
 words = raw_input("Feed Me Seymour!: ")
-file_name = str(raw_input("Do you want to save this data to a file? blank=NO|/path/filename=YES: "))
+file_name = str(raw_input("\nDo you want to save this data to a file? \nBlank = NO | /path/filename = YES: "))
 parts = words.split()
 
 specials = "] [ ? / < ~ # ` ! @ $ % ^ & * ( ) + = } | : ; ' , > { " + " "
@@ -62,22 +62,37 @@ def add_specials(mangled_list):
         return mangled
 
 def add_parts(words):
+        indi_mangled = []
         mangled = []
         mangled_fupper = []
         mangled_upper = [word[:1].upper() + word[1:] for word in words]
         mangled_lower = [word[:1].lower() + word[1:] for word in words]
         mangled_prep = [word[:1].lower() + word[1:] for word in words]
-        for s in itertools.permutations(mangled_upper):
+        for s in itertools.permutations(mangled_upper, 3):
                 mangled.append(''.join(s))
-        for s in itertools.permutations(mangled_lower):
+        for s in itertools.permutations(mangled_lower, 3):
                 mangled.append(''.join(s))
-        for s in itertools.permutations(mangled_prep):
+        for s in itertools.permutations(mangled_prep, 3):
                 mangled_fupper.append(''.join(s))
         for s in mangled_fupper:
                 mangled.append(string.capwords(s))
         for word in words:
                 mangled.append(word)
-        return mangled
+        
+        for s in itertools.permutations(mangled_upper, 2):
+                indi_mangled.append(''.join(s))
+        for s in itertools.permutations(mangled_lower, 2):
+                indi_mangled.append(''.join(s))
+        for s in itertools.permutations(mangled_prep, 2):
+                indi_mangled.append(''.join(s))
+        for s in mangled_fupper:
+                indi_mangled.append(string.capwords(s))
+        for word in words:
+                indi_mangled.append(word)
+                
+        joined_list = mangled + indi_mangled
+        
+        return joined_list
 
 def add_leet(words):
         old_chars = ['a', 't', 'e', 'i', 's', 'o']
