@@ -149,13 +149,14 @@ mangled_leet = add_leet(mangled_parts)
 
 all_list = mangled_leet + mangled_numbers + mangled_parts + mangled_specials + specials_mangle + number_mangle
 all_list.sort()
+final_list = set(all_list)
 
 if file_name == '':
         file_name = None
 
-for item in all_list:
+for item in final_list:
         print item
         
 if file_name is not None:
-        write_file(all_list, file_name)
+        write_file(final_list, file_name)
         
